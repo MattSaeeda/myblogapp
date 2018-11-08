@@ -16,6 +16,8 @@ router.get('/:slug', postsController.show);
 
 // Create posts
 // POST /blog
+
+
 router.post('/', postsController.create);
 // TODO: Add Edit and Delete Requests
 
