@@ -64,3 +64,19 @@ exports.create = function (req, res, next) {
         res.redirect('/blog')
     }).catch(next)
 };
+
+
+exports.delete = function(req, res, next){
+    Post.find().exec((err, posts) => {
+        let post = posts.filter(x => x['slug'] === req.params['slug'])[0];
+        res.render('posts/delete', { title: posts['title'], post })
+
+    });
+};
+exports.update = function(req, res, next){
+    Post.find().exec((err, posts) => {
+        let post = posts.filter(x => x['slug'] === req.params['slug'])[0];
+        res.render('posts/update', { title: posts['title'], post })
+
+    });
+};
