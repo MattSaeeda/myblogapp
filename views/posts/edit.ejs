@@ -1,0 +1,12 @@
+<h1><%= post['title'] %></h1>
+<p>
+  <%= post['content'] %>
+</p>
+<p>
+
+<form action="/blog" method="post">
+    Title: <br>
+    Content:<br>
+    <input type="text" name="content" required>
+    <input type="submit" value="accept"/><br><br><hr>
+</form>

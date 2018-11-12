@@ -65,6 +65,47 @@ exports.create = function (req, res, next) {
     }).catch(next)
 };
 
+<<<<<<< HEAD
+//Deletes a post
+exports.delete = function (req , res, next) {
+    let post = posts.filter(x => x['slug'] === req.params['slug'])[0];
+    Post.remove(post);
+};
+
+//Edits a post
+exports.edit = function (req, res, next) {
+    Post.find().exec((err, posts) => {
+        let post = posts.filter(x => x['slug'] === req.params['slug'])[0];
+        res.render('posts/show', { title: posts['title'], post })
+        post = new Post(req.body);
+        post.save(err => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.render('/')
+        })
+    });
+
+}
+
+exports.register = function (req, res, next) {
+  
+    function truncate(str, no_words) {
+      return str.split(" ").splice(0, no_words).join(" ");
+    }
+    let formPost = req.body
+    if (formPost.summary === undefined) {
+        const postSummary = truncate(req.body.content, 20) + "...";
+        formPost = Object.assign(formPost, {summary: postSummary});
+    }
+    const newPost = new Post(formPost);
+
+    newPost.save().then(() => {
+        res.redirect('/blog')
+    }).catch(next)
+};
+
+=======
 
 exports.delete = function(req, res, next){
     Post.find().exec((err, posts) => {
@@ -80,3 +121,4 @@ exports.update = function(req, res, next){
 
     });
 };
+>>>>>>> c3f7e0ac2d58f3da969c3aab58cf93771d6baf5c
